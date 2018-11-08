@@ -42,8 +42,8 @@ public class hashTable1 {
         }
         return retB;
         */
-      hashAr[index].add(value);
-      hashKeyAr[index].add(key);
+      this.hashAr[index].add(value);
+      this.hashKeyAr[index].add(key);
     }
 
     //Updates m to the new value. Rehashes all keys
@@ -56,10 +56,11 @@ public class hashTable1 {
                 i = newM;
             }
             else {
-                for(int i = 0; )
-                String tempV = get(hashKeyAr[i]);
-                String tempK = hashKeyAr[i];
-                tempHT.put(tempK, tempV);
+                for(int j = 0; j<hashKeyAr[j].size()-1; j++) {
+                    String tempV = get(hashKeyAr[i].get(j));
+                    String tempK = hashKeyAr[i].get(j);
+                    tempHT.put(tempK, tempV);
+                }
             }
         }
         this.hashAr = tempHT.hashAr;
@@ -69,9 +70,14 @@ public class hashTable1 {
     //get hashes the key to get the index, and returns that element. Returns null if key not found.
     public String get(String key){
         int index = key.hashCode()%hashAr.length;
-        for(i = 0; i<hashKeyAr[index].size; i++){
-            if(key == hashKeyAr[index].get(i)){
-                return hashAr[index].get(i);
+        if(hashKeyAr[index]==null){
+            return null;
+        }
+        else {
+            for (int i = 0; i < hashKeyAr[index].size() - 1; i++) {
+                if (key == hashKeyAr[index].get(i)) {
+                    return hashAr[index].get(i);
+                }
             }
         }
         return null;
